@@ -34,14 +34,21 @@ COPY pyproject.toml ./
 # upgrade pip
 RUN pip install --upgrade pip setuptools wheel
 
-# Install dependencies
-#RUN poetry install --no-root -vvv
-
 # Copy the rest of the application code
-COPY . .
+# COPY . .
+# not needed because we are mounting
 
 # append Python module dir to Path
 RUN PATH="${PATH}:/app/modules"
 
+# Install dependencies
+RUN poetry install --no-root --no-cache -vvv
+
 # Set the default command to run the application
-CMD ["python", "framepool_annotate.py"]
+#CMD ["python", "framepool_annotate.py"]
+
+# Expose port 8888 for Jupyter
+EXPOSE 8080
+
+# Command to run Jupyter notebook
+CMD ["poetry", "run", "jupyter-notebook", "--ip=0.0.0.0", "--port=8080", "--no-browser", "--allow-root"]
