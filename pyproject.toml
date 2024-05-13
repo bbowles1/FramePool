@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "orfa"
+version = "0.1.0"
+description = "5UTR pipeline"
+authors = ["Brad Bowles"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+keras = "2.2.4"
+Cython = "3.0.6"
+kipoi = "0.6.9"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
