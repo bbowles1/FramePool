@@ -4,9 +4,11 @@
 # using ubuntu LTS version
 FROM ubuntu:20.04
 
-RUN apt-get update && apt-get install --no-install-recommends -y python3.8-dev \
-    python3.8-venv python3-pip python3-wheel build-essential && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install --no-install-recommends -y \
+    python3.8-dev python3.8-venv python3-pip python3-wheel \
+    build-essential libhdf5-dev pkg-config && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # create and activate virtual environment
 RUN python3.8 -m venv /opt/venv
@@ -35,7 +37,9 @@ COPY pyproject.toml ./
 RUN pip install --upgrade pip setuptools wheel
 
 # Copy the rest of the application code
-# COPY . .
+COPY pyproject.toml .
+COPY poetry.lock .
+COPY framepool_annotate.py .
 # not needed because we are mounting
 
 # append Python module dir to Path
