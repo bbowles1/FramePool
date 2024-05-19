@@ -9,6 +9,7 @@ Script to invoke FramePool annotation provided an input dataframe path
 """
 
 import sys
+import argparse
 sys.path.append('/app/modules/')
 from kipoi_functions import framepool_caller
 
