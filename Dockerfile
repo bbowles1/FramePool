@@ -20,9 +20,6 @@ ENV PATH="$PATH:/root/.local/share/pipx/venvs/poetry/bin/"
 
 WORKDIR /app
 
-# Copy only the pyproject.toml and poetry.lock files initially to leverage Docker cache
-COPY pyproject.toml ./
-
 # Copy the rest of the application code
 COPY pyproject.toml .
 COPY poetry.lock .
