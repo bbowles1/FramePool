@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 # Install poetry separated from system interpreter
 RUN pip install -U pipx \
     && pipx ensurepath \
-    && $pipx install poetry==${POETRY_VERSION}
+    && pipx install poetry==${POETRY_VERSION}
 
 # export path
 ENV PATH="$PATH:/root/.local/share/pipx/venvs/poetry/bin/"
